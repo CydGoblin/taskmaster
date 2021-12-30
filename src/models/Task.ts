@@ -12,3 +12,5 @@ export class Task {
     this.completed = null;
   }
 }
+
+export type TaskEntity = Task;

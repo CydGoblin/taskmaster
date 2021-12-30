@@ -2,7 +2,7 @@ import "colors";
 import inquirer from "inquirer";
 
 export const inquirerMenu = async () => {
-  console.clear();
+  // console.clear();
   console.log("=========================".green);
   console.log("  Select an option  ".green);
   console.log("=========================\n".green);
@@ -48,7 +48,7 @@ export const inquirerMenu = async () => {
 
 export const pause = async () => {
   const { response } = await inquirer.prompt({
-    type: "confirm",
+    type: "input",
     name: "response",
     message: `\nPresione ${"ENTER".green} para confirmar`,
   });
