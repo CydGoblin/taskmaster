@@ -21,6 +21,12 @@ export class TasksList {
     return Object.values(this._list);
   }
 
+  loaddB(tasks: TaskEntity[]) {
+    tasks.map((task) => {
+      this._list[task.id] = task;
+    });
+  }
+
   createTask(desc: string) {
     const task = new Task(desc);
     this._list[task.id] = task;

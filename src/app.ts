@@ -1,12 +1,18 @@
 import { inquirerMenu, pause, readInput } from "./helpers/inquirer";
 import { TasksList } from "./models/TasksList";
-import { saveDB } from "./helpers/saveFile";
+import { readDB, saveDB } from "./helpers/db";
 
 require("colors");
 
 const main = async () => {
   let opt = "";
   const tasksList = new TasksList();
+  const tasksDB = readDB();
+
+  if (tasksDB) {
+    // TODO: Cargar tareas
+    tasksList.loaddB(tasksDB);
+  }
 
   do {
     // Prints menu

@@ -1,6 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 
-export class Task {
+export interface TaskEntity {
+  id: string;
+  desc: string;
+  // created: Date;
+  completed: Date | null;
+}
+
+export class Task implements TaskEntity {
   id: string;
   desc: string;
   // created: Date;
@@ -12,5 +19,3 @@ export class Task {
     this.completed = null;
   }
 }
-
-export type TaskEntity = Task;
