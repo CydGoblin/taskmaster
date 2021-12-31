@@ -3,7 +3,7 @@ import { TaskEntity } from "models/Task";
 
 // TODO: podria esto ser un clase?
 
-const dbPath = "db/db.data.json";
+const dbPath = "db/data.json";
 
 export const saveDB = (data: string) => {
   writeFileSync(dbPath, data);

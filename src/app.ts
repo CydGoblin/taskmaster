@@ -1,6 +1,6 @@
 import { inquirerMenu, pause, readInput } from "./helpers/inquirer";
-import { TasksList } from "./models/TasksList";
-import { readDB, saveDB } from "./helpers/db";
+import { TasksList, TASKSTATUS } from "./models/TasksList";
+import { readDB, saveDB } from "./helpers/storage";
 
 require("colors");
 
@@ -10,7 +10,6 @@ const main = async () => {
   const tasksDB = readDB();
 
   if (tasksDB) {
-    // TODO: Cargar tareas
     tasksList.loaddB(tasksDB);
   }
 
@@ -24,11 +23,13 @@ const main = async () => {
         tasksList.createTask(desc);
         break;
       case "2":
-        console.log(tasksList.toArray);
+        tasksList.showList();
         break;
       case "3":
+        tasksList.showList(TASKSTATUS.COMPLETED);
         break;
       case "4":
+        tasksList.showList(TASKSTATUS.PENDING);
         break;
       case "5":
         break;
