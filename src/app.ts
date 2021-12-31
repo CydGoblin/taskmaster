@@ -1,5 +1,6 @@
 import { inquirerMenu, pause, readInput } from "./helpers/inquirer";
 import { TasksList } from "./models/TasksList";
+import { saveDB } from "./helpers/saveFile";
 
 require("colors");
 
@@ -26,6 +27,8 @@ const main = async () => {
       case "5":
         break;
     }
+
+    saveDB(JSON.stringify(tasksList.toArray));
 
     if (opt !== "0") {
       await pause();
