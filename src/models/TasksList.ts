@@ -4,8 +4,12 @@ interface TaskListEntity {
   [key: string]: TaskEntity;
 }
 
-export class Tasks {
-  private _list: TaskListEntity | {} = {};
+export class TasksList {
+  private _list: TaskListEntity;
+
+  constructor() {
+    this._list = {};
+  }
 
   get listTasks() {
     return this._list;
@@ -13,6 +17,6 @@ export class Tasks {
 
   createTask(desc: string) {
     const task = new Task(desc);
-    (this._list as TaskListEntity)[task.id] = task;
+    this._list[task.id] = task;
   }
 }

@@ -1,11 +1,11 @@
 import { inquirerMenu, pause, readInput } from "./helpers/inquirer";
-import { Tasks } from "./models/Tasks";
+import { TasksList } from "./models/TasksList";
 
 require("colors");
 
 const main = async () => {
   let opt = "";
-  const tasks = new Tasks();
+  const tasksList = new TasksList();
 
   do {
     opt = await inquirerMenu();
@@ -13,10 +13,10 @@ const main = async () => {
     switch (opt) {
       case "1":
         const desc = await readInput("Descripción:");
-        tasks.createTask(desc);
+        tasksList.createTask(desc);
         break;
       case "2":
-        console.log(tasks.listTasks);
+        console.log(tasksList.listTasks);
         break;
       case "3":
         break;
