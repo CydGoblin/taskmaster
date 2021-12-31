@@ -8,6 +8,7 @@ const main = async () => {
   const tasksList = new TasksList();
 
   do {
+    // Prints menu
     opt = await inquirerMenu();
 
     switch (opt) {
@@ -16,7 +17,7 @@ const main = async () => {
         tasksList.createTask(desc);
         break;
       case "2":
-        console.log(tasksList.listTasks);
+        console.log(tasksList.toArray);
         break;
       case "3":
         break;
