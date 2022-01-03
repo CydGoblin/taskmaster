@@ -1,5 +1,6 @@
 import "colors";
 import inquirer from "inquirer";
+import { TaskEntity } from "models/Task";
 
 export const inquirerMenu = async () => {
   console.clear();
@@ -68,4 +69,33 @@ export const readInput = async (message: string) => {
     },
   });
   return desc;
+};
+
+export const menuDeleteTask = async (tasksList: TaskEntity[]) => {
+  let choices = tasksList.map((task, index) => {
+    const idx = `${index + 1 + "."}`.green;
+    return {
+      value: task.id,
+      name: `${idx.green} ${task.desc}`,
+    };
+  });
+
+  choices.unshift({ value: "0", name: `${"0.".green} Cancel` });
+
+  const { id } = await inquirer.prompt({
+    type: "list",
+    name: "id",
+    choices,
+  });
+
+  return id;
+};
+
+export const confirmAction = async (message: string) => {
+  const { response } = await inquirer.prompt({
+    type: "confirm",
+    name: "response",
+    message,
+  });
+  return response;
 };

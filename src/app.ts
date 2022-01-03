@@ -1,4 +1,10 @@
-import { inquirerMenu, pause, readInput } from "./helpers/inquirer";
+import {
+  confirmAction,
+  inquirerMenu,
+  menuDeleteTask,
+  pause,
+  readInput,
+} from "./helpers/inquirer";
 import { TasksList, TASKSTATUS } from "./models/TasksList";
 import { readDB, saveDB } from "./helpers/storage";
 
@@ -32,6 +38,18 @@ const main = async () => {
         tasksList.showList(TASKSTATUS.PENDING);
         break;
       case "5":
+        // Complete task
+        break;
+      case "6":
+        const id = await menuDeleteTask(tasksList.toArray);
+        if (id && id !== 0) {
+          const proceed = await confirmAction(
+            "Are you sure you want to delete this task?"
+          );
+          if (proceed) {
+            tasksList.deleteTask(id);
+          }
+        }
         break;
     }
 

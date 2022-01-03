@@ -26,6 +26,12 @@ export class TasksList {
     });
   }
 
+  deleteTask(id: string) {
+    if (this._list[id]) {
+      delete this._list[id];
+    }
+  }
+
   createTask(desc: string) {
     const task = new Task(desc);
     this._list[task.id] = task;
@@ -51,7 +57,7 @@ export class TasksList {
       // https://github.com/klaussinani/signale
       // https://www.npmjs.com/package/figures
       console.log(
-        `${(index + 1).toString().gray}. ${
+        `${(index + 1).toString().white}. ${
           task.completed ? "✔ ".green : "☐ ".magenta
         } ${task.desc}`
       );
