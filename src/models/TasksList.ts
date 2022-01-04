@@ -59,8 +59,33 @@ export class TasksList {
       console.log(
         `${(index + 1).toString().white}. ${
           task.completed ? "✔ ".green : "☐ ".magenta
-        } ${task.desc}`
+        } ${task.desc} ${
+          task.completed !== null ? `(${task.completed})`.gray : ""
+        }`
       );
+    });
+  }
+
+  toggleCompleteTask(completedIds: string[] = []) {
+    completedIds.map((id) => {
+      // Object.keys(this._list).map((key) => {
+      // if (completedIds.includes(key)) {
+      //   console.log(this._list[key]);
+      //   console.log(this._list[key] instanceof Task);
+      //   this._list[key].markComplete();
+      // } else {
+      //   this._list[key].markIncomple();
+      // }
+      const task = this._list[id];
+      if (!task.completed) {
+        task.completed = new Date();
+      }
+    });
+
+    this.toArray.map((task) => {
+      if (!completedIds.includes(task.id)) {
+        this._list[task.id].completed = null;
+      }
     });
   }
 }

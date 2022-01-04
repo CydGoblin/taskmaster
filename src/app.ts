@@ -1,6 +1,7 @@
 import {
   confirmAction,
   inquirerMenu,
+  menuCompleteTask,
   menuDeleteTask,
   pause,
   readInput,
@@ -39,6 +40,8 @@ const main = async () => {
         break;
       case "5":
         // Complete task
+        const ids = await menuCompleteTask(tasksList.toArray);
+        tasksList.toggleCompleteTask(ids);
         break;
       case "6":
         const id = await menuDeleteTask(tasksList.toArray);

@@ -51,7 +51,7 @@ export const pause = async () => {
   const { response } = await inquirer.prompt({
     type: "input",
     name: "response",
-    message: `\nPresione ${"ENTER".green} para confirmar`,
+    message: `\nPress ${"ENTER".green} to continue`,
   });
   return response;
 };
@@ -89,6 +89,26 @@ export const menuDeleteTask = async (tasksList: TaskEntity[]) => {
   });
 
   return id;
+};
+
+export const menuCompleteTask = async (tasksList: TaskEntity[]) => {
+  let choices = tasksList.map((task, index) => {
+    const idx = `${index + 1 + "."}`.green;
+    return {
+      value: task.id,
+      name: `${idx.green} ${task.desc}`,
+      check: task.completed ? true : false,
+    };
+  });
+
+  const { ids } = await inquirer.prompt({
+    type: "checkbox",
+    name: "ids",
+    message: "Selecciones",
+    choices,
+  });
+
+  return ids;
 };
 
 export const confirmAction = async (message: string) => {

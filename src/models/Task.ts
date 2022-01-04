@@ -5,6 +5,8 @@ export interface TaskEntity {
   desc: string;
   // created: Date;
   completed: Date | null;
+  markComplete: () => void;
+  markIncomple: () => void;
 }
 
 export class Task implements TaskEntity {
@@ -13,9 +15,17 @@ export class Task implements TaskEntity {
   // created: Date;
   completed: Date | null;
 
-  constructor(desc: string) {
-    this.id = uuidv4();
+  constructor(desc: string, id = uuidv4(), completed = null) {
+    this.id = id;
     this.desc = desc;
+    this.completed = completed;
+  }
+
+  markComplete() {
     this.completed = null;
+  }
+
+  markIncomple() {
+    this.completed = new Date();
   }
 }
