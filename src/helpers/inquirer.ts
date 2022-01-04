@@ -2,6 +2,16 @@ import "colors";
 import inquirer from "inquirer";
 import { TaskEntity } from "models/Task";
 
+export enum MENUOPTIONS {
+  CREATE,
+  LIST,
+  LIST_COMPLETE,
+  LIST_PENDING,
+  MARK_COMPLETE,
+  DELETE,
+  EXIT,
+}
+
 export const inquirerMenu = async () => {
   console.clear();
   console.log("====================".green);
@@ -14,37 +24,37 @@ export const inquirerMenu = async () => {
     message: "What do you want to do?",
     choices: [
       {
-        value: "1",
+        value: MENUOPTIONS.CREATE,
         name: `${"1.".green} Create a task`,
       },
       {
-        value: "2",
+        value: MENUOPTIONS.LIST,
         name: `${"2.".green} Tasks list`,
       },
       {
-        value: "3",
+        value: MENUOPTIONS.LIST_COMPLETE,
         name: `${"3.".green} Completed tasks list`,
       },
       {
-        value: "4",
+        value: MENUOPTIONS.LIST_PENDING,
         name: `${"4.".green} Pending tasks list`,
       },
       {
-        value: "5",
+        value: MENUOPTIONS.MARK_COMPLETE,
         name: `${"5.".green} Complete task(s)`,
       },
       {
-        value: "6",
+        value: MENUOPTIONS.DELETE,
         name: `${"6.".green} Delete task(s)`,
       },
       {
-        value: "0",
+        value: MENUOPTIONS.EXIT,
         name: `${"0.".green} Exit`,
       },
     ],
   });
 
-  return option;
+  return option as number;
 };
 
 export const pause = async () => {
