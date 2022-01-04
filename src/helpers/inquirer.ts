@@ -97,7 +97,7 @@ export const menuCompleteTask = async (tasksList: TaskEntity[]) => {
     return {
       value: task.id,
       name: `${idx.green} ${task.desc}`,
-      check: task.completed ? true : false,
+      checked: task.completed !== null ? true : false,
     };
   });
 

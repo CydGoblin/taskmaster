@@ -22,7 +22,7 @@ export class TasksList {
 
   loaddB(tasks: TaskEntity[]) {
     tasks.map((task) => {
-      this._list[task.id] = task;
+      this._list[task.id] = new Task(task.desc, task.id, task.completed);
     });
   }
 
@@ -67,24 +67,11 @@ export class TasksList {
   }
 
   toggleCompleteTask(completedIds: string[] = []) {
-    completedIds.map((id) => {
-      // Object.keys(this._list).map((key) => {
-      // if (completedIds.includes(key)) {
-      //   console.log(this._list[key]);
-      //   console.log(this._list[key] instanceof Task);
-      //   this._list[key].markComplete();
-      // } else {
-      //   this._list[key].markIncomple();
-      // }
-      const task = this._list[id];
-      if (!task.completed) {
-        task.completed = new Date();
-      }
-    });
-
-    this.toArray.map((task) => {
-      if (!completedIds.includes(task.id)) {
-        this._list[task.id].completed = null;
+    Object.keys(this._list).map((key) => {
+      if (completedIds.includes(key)) {
+        this._list[key].markComplete();
+      } else {
+        this._list[key].markIncomple();
       }
     });
   }

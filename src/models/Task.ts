@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 export interface TaskEntity {
   id: string;
   desc: string;
-  // created: Date;
   completed: Date | null;
   markComplete: () => void;
   markIncomple: () => void;
@@ -12,20 +11,23 @@ export interface TaskEntity {
 export class Task implements TaskEntity {
   id: string;
   desc: string;
-  // created: Date;
   completed: Date | null;
 
-  constructor(desc: string, id = uuidv4(), completed = null) {
+  constructor(
+    desc: string,
+    id: string = uuidv4(),
+    completed: Date | null = null
+  ) {
     this.id = id;
     this.desc = desc;
     this.completed = completed;
   }
 
   markComplete() {
-    this.completed = null;
+    this.completed = new Date();
   }
 
   markIncomple() {
-    this.completed = new Date();
+    this.completed = null;
   }
 }
