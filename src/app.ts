@@ -7,14 +7,15 @@ import {
   readInput,
 } from "./helpers/inquirer";
 import { TasksList, TASKSTATUS } from "./models/TasksList";
-import { readDB, saveDB } from "./helpers/storage";
+import { Storage } from "./helpers/storage";
 
 require("colors");
 
 const main = async () => {
   let opt = "";
   const tasksList = new TasksList();
-  const tasksDB = readDB();
+  const storage = new Storage();
+  const tasksDB = storage.readDB();
 
   if (tasksDB) {
     tasksList.loaddB(tasksDB);
@@ -56,7 +57,7 @@ const main = async () => {
         break;
     }
 
-    saveDB(JSON.stringify(tasksList.toArray));
+    storage.saveDB(JSON.stringify(tasksList.toArray));
 
     if (opt !== "0") {
       await pause();

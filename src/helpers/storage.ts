@@ -1,18 +1,22 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { TaskEntity } from "models/Task";
 
-// TODO: podria esto ser un clase?
+export class Storage {
+  dbPath: string;
 
-const dbPath = "db/data.json";
-
-export const saveDB = (data: string) => {
-  writeFileSync(dbPath, data);
-};
-
-export const readDB = (): TaskEntity[] | null => {
-  if (!existsSync(dbPath)) {
-    return null;
-  } else {
-    return JSON.parse(readFileSync(dbPath, { encoding: "utf-8" }));
+  constructor() {
+    this.dbPath = "db/data.json";
   }
-};
+
+  saveDB = (data: string) => {
+    writeFileSync(this.dbPath, data);
+  };
+
+  readDB = (): TaskEntity[] | null => {
+    if (!existsSync(this.dbPath)) {
+      return null;
+    } else {
+      return JSON.parse(readFileSync(this.dbPath, { encoding: "utf-8" }));
+    }
+  };
+}
